@@ -7,16 +7,17 @@ import (
 	"fmt"
 	"io"
 	"net"
-	"net/http"
-	"net/http/httptest"
+//	"net/http"
+//	"net/http/httptest"
 	"strings"
 	"sync"
 	"testing"
 	"time"
 
-	"github.com/gorilla/websocket"
-	"github.com/sourcegraph/jsonrpc2"
-	websocketjsonrpc2 "github.com/sourcegraph/jsonrpc2/websocket"
+//	"github.com/gorilla/websocket"
+//	"github.com/sourcegraph/jsonrpc2"
+	"github.com/itsblocked/jsonrpc2"
+//	websocketjsonrpc2 "github.com/sourcegraph/jsonrpc2/websocket"
 )
 
 func TestRequest_MarshalJSON_jsonrpc(t *testing.T) {
@@ -151,6 +152,7 @@ func TestClientServer(t *testing.T) {
 		lis.Close()
 		<-done // ensure Serve's error return (if any) is caught by this test
 	})
+        /*
 	t.Run("websocket", func(t *testing.T) {
 		ctx := context.Background()
 		done := make(chan struct{})
@@ -178,6 +180,7 @@ func TestClientServer(t *testing.T) {
 
 		<-done // keep the test running until the WebSocket disconnects (to avoid missing errors)
 	})
+        */
 }
 
 func testClientServer(ctx context.Context, t *testing.T, stream jsonrpc2.ObjectStream) {
